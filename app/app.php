@@ -2,6 +2,8 @@
     date_default_timezone_set('America/Los_Angeles');
     require_once __DIR__."/../vendor/autoload.php";
     require_once __DIR__."/../src/tamagotchi.php";
+    // require_once __DIR__."/../css/styles.css";
+
 
     session_start();
 
@@ -30,22 +32,23 @@
     $app->post("/new", function() use ($app) {
         $tama = new Tama($_POST['name'], 30, 30, 30, false);
         $tama->save();
-        return $app['twig']->render('New.html.twig', array('newTama' => $tama));
+        return $app->redirect('/');
+
     });
 
     $app->post("/feed", function() use ($app) {
       Tama::eatWith();
-      return $app['twig']->render('Feed.html.twig');
+      return $app->redirect('/');
     });
 
     $app->post("/play", function() use ($app) {
         Tama::playWith();
-        return $app['twig']->render('Play.html.twig');
+        return $app->redirect('/');
     });
 
     $app->post("/sleep", function() use ($app) {
       Tama::sleepWith();
-      return $app['twig']->render('Sleep.html.twig');
+      return $app->redirect('/');
     });
 
     $app->post("/dead", function() use ($app) {
