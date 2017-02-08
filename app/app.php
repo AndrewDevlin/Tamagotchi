@@ -16,18 +16,26 @@
     ));
 
     $app->get("/", function() use ($app) {
-
-        return $app['twig']->render('homeView.html.twig', array('places' => Tama::getAll()));
+        if(!empty($_SESSION['tama'])){
+            if ($_SESSION['tama'][0]->getPlay() <= 0 || $_SESSION['tama'][0]->getSleep() <= 0 || $_SESSION['tama'][0]->getFood() <= 0) {
+                return $app['twig']->render("Dead.html.twig");
+            } else {
+                return $app['twig']->render('homeView.html.twig', array('tama' => Tama::getAll()));
+            }
+        }else {
+          return $app['twig']->render('homeView.html.twig', array('tama' => Tama::getAll()));
+        }
     });
 
     $app->post("/new", function() use ($app) {
-        $tama = new Tama($_POST['name'], 10, 10, 10, false);
+        $tama = new Tama($_POST['name'], 30, 30, 30, false);
         $tama->save();
-        return $app['twig']->render('new.html.twig', array('newTama' => $tama);
+        return $app['twig']->render('New.html.twig', array('newTama' => $tama));
     });
 
     $app->post("/feed", function() use ($app) {
-
+      Tama::eatWith();
+      return $app['twig']->render('Feed.html.twig');
     });
 
     $app->post("/play", function() use ($app) {
@@ -36,11 +44,17 @@
     });
 
     $app->post("/sleep", function() use ($app) {
-
+      Tama::sleepWith();
+      return $app['twig']->render('Sleep.html.twig');
     });
 
     $app->post("/dead", function() use ($app) {
 
+    });
+
+    $app->post("/delete", function() use ($app) {
+        Tama::deleteAll();
+        return $app['twig']->render('homeView.html.twig');
     });
 
     return $app;

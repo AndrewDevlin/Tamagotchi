@@ -7,7 +7,36 @@
 <body>
     <div class="container">
       <h1>Your Tamagotchi</h1>
+      {%if tama is empty%}
+        <form action="/new" method="post">
+          <label for="name">Enter Your tamagotchi's Name:</label>
+          <input type="text" name="name">
+          <button type="submit" name="button">Make a New Tama</button>
+        </form>
+      {% elseif tama is not empty%}
+        <ul>
+          {% for item in tama%}
+          <li>Name: {{item.getName}}</li>
+          <li>Food Level: {{item.getFood}}</li>
+          <li>Sleep Level: {{item.getSleep}}</li>
+          <li>Play Level: {{item.getPlay}}</li>
 
+          {% endfor %}
+        </ul>
+        <form action="/feed" method="post">
+          <button type="submit" name="button">Feed</button>
+        </form>
+        <form action="/play" method="post">
+          <button type="submit" name="button">Play</button>
+        </form>
+        <form action="/sleep" method="post">
+          <button type="submit" name="button">Sleep</button>
+        </form>
+      {% endif %}
+
+      <form action="/delete" method="post">
+        <button type="submit" name="button">Delete</button>
+      </form>
     </div>
 </body>
 </html>

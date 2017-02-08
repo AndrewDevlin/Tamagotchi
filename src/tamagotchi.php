@@ -16,15 +16,15 @@
         }
 
         function getName(){
-            return $this->$name;
+            return $this->name;
         }
 
         function setName($name){
-            $this->name = $name;
+            $this->name = (string) $name;
         }
 
         function getFood(){
-          return $this->$food;
+          return $this->food;
         }
 
         function setFood($food){
@@ -32,7 +32,7 @@
         }
 
         function getSleep(){
-            return $this->$sleep;
+            return $this->sleep;
         }
 
         function setSleep($sleep){
@@ -40,7 +40,7 @@
         }
 
         function getPlay(){
-            return $this->$play;
+            return $this->play;
         }
 
         function setPlay($play){
@@ -48,7 +48,7 @@
         }
 
         function getDead(){
-            return $this->$dead;
+            return $this->dead;
         }
 
         function setDead($dead){
@@ -56,25 +56,59 @@
         }
 
         function save(){
-            array_push($_SESSION['tama'], $this);
+            $_SESSION['tama']= array($this);
         }
 
         static function playWith(){
-          $play= $this->getPlay();
-          $food= $this->getFood();
-          $sleep= $this->getSleep();
-          $play .= 1;
-          $food = $food - 3;
-          $sleep = $sleep - 3;
+          $play= $_SESSION['tama'][0]->getPlay();
+          $food= $_SESSION['tama'][0]->getFood();
+          $sleep= $_SESSION['tama'][0]->getSleep();
+          $play = $play + 1;
+          $food = $food - 2;
+          $sleep = $sleep - 2;
+          $_SESSION['tama'][0]->setFood($food);
+          $_SESSION['tama'][0]->setPlay($play);
+          $_SESSION['tama'][0]->setSleep($sleep);
 
-          $tama = array("play"=>$play,"food"=>$food,"sleep"=>$sleep);
+          return $_SESSION['tama'];
+        }
 
-          return array_push($_SESSION['tama'],$tama);
+        static function sleepWith(){
+          $play= $_SESSION['tama'][0]->getPlay();
+          $food= $_SESSION['tama'][0]->getFood();
+          $sleep= $_SESSION['tama'][0]->getSleep();
+          $play = $play - 2;
+          $food = $food - 2;
+          $sleep = $sleep + 1;
+          $_SESSION['tama'][0]->setFood($food);
+          $_SESSION['tama'][0]->setPlay($play);
+          $_SESSION['tama'][0]->setSleep($sleep);
+
+          return $_SESSION['tama'];
+        }
+
+        static function eatWith(){
+          $play= $_SESSION['tama'][0]->getPlay();
+          $food= $_SESSION['tama'][0]->getFood();
+          $sleep= $_SESSION['tama'][0]->getSleep();
+          $play = $play - 2;
+          $food = $food + 1;
+          $sleep = $sleep - 2;
+          $_SESSION['tama'][0]->setFood($food);
+          $_SESSION['tama'][0]->setPlay($play);
+          $_SESSION['tama'][0]->setSleep($sleep);
+
+          return $_SESSION['tama'];
         }
 
         static function getAll()
         {
             return $_SESSION['tama'];
+        }
+
+        static function deleteAll()
+        {
+            $_SESSION['tama'] = array();
         }
     }
 
