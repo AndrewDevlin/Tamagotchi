@@ -9,7 +9,7 @@
 <body>
     <div class="panel panel-info">
 
-      <h1>Your Tamagotchi</h1>
+      <h1>Your Tamagotchi:</h1>
       {%if tama is empty%}
         <form action="/new" method="post">
           <label for="name">Enter Your tamagotchi's Name:</label>
@@ -19,42 +19,56 @@
       {% elseif tama is not empty%}
         <ul>
           {% for item in tama%}
-          <li>Name: {{item.getName}}</li>
+          <li class="tamName">{{item.getName}}</li>
           <li>Food Level:
             <div class="progress progress-striped active" style="width: 30%">
-              <div class="progress-bar" style="width:{{(item.getFood/30)*100}}%"></div>
-              <div class="progress-bar progress-bar-danger" style="width:{{100-(item.getFood/30)*100}}%"></div>
+              <div class="progress-bar" style="width:{{(item.getFood/100)*100}}%"></div>
+              <div class="progress-bar progress-bar-danger" style="width:{{100-(item.getFood/100)*100}}%"></div>
             </div>
           </li>
           <li>Sleep Level:
             <div class="progress progress-striped active" style="width: 30%">
-              <div class="progress-bar  progress-bar-warning" style="width:{{(item.getSleep/30)*100}}%"></div>
-              <div class="progress-bar progress-bar-danger" style="width:{{100-(item.getSleep/30)*100}}%"></div>
+              <div class="progress-bar  progress-bar-warning" style="width:{{(item.getSleep/100)*100}}%"></div>
+              <div class="progress-bar progress-bar-danger" style="width:{{100-(item.getSleep/100)*100}}%"></div>
             </div>
           </li>
           <li>Play Level:
             <div class="progress progress-striped active" style="width: 30%">
-              <div class="progress-bar progress-bar-success" style="width:{{(item.getPlay/30)*100}}%"></div>
-              <div class="progress-bar progress-bar-danger" style="width:{{100-(item.getPlay/30)*100}}%"></div>
+              <div class="progress-bar progress-bar-success" style="width:{{(item.getPlay/100)*100}}%"></div>
+              <div class="progress-bar progress-bar-danger" style="width:{{100-(item.getPlay/100)*100}}%"></div>
             </div>
           </li>
 
       {% endfor %}
         </ul>
-        <form class="interaction" action="/feed" method="post">
-          <button type="submit" name="button">Feed</button>
-        </form>
-        <form class="interaction" action="/sleep" method="post">
-          <button type="submit" name="button">Sleep</button>
-        </form>
-        <form class="interaction" action="/play" method="post">
-          <button type="submit" name="button">Play</button>
-        </form>
+        <div class="buttons row">
+          <!-- <div class="col-xs-3">
+          </div> -->
+          <div class="col-xs-2 col-xs-offset-2">
+            <form action="/feed" method="post">
+              <button class="interaction foodBtn" type="submit" name="button">Feed</button>
+            </form>
+          </div>
+          <div class="col-xs-2">
+            <form action="/sleep" method="post">
+              <button class="interaction sleepBtn" type="submit" name="button">Sleep</button>
+            </form>
+          </div>
+          <div class="col-xs-2">
+            <form action="/play" method="post">
+              <button class="interaction playBtn" type="submit" name="button">Play</button>
+            </form>
+          </div>
+          <div class="col-xs-2">
+            <form action="/dead" method="post">
+              <button class="interaction delBtn" type="submit" name="button">Kill</button>
+            </form>
+          </div>
+
+
+        </div>
+        <br><br>
       {% endif %}
-<br><br>
-      <form action="/delete" method="post">
-        <button type="submit" name="button">Delete</button>
-      </form>
     </div>
 </body>
 </html>

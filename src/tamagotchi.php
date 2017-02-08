@@ -5,14 +5,12 @@
         private $food;
         private $sleep;
         private $play;
-        private $dead;
 
         function __construct($name, $food, $sleep, $play, $dead){
             $this->name = $name;
             $this->food = $food;
             $this->sleep = $sleep;
             $this->play = $play;
-            $this->dead = $dead;
         }
 
         function getName(){
@@ -45,14 +43,6 @@
 
         function setPlay($play){
             $this->play = $play;
-        }
-
-        function getDead(){
-            return $this->dead;
-        }
-
-        function setDead($dead){
-            $this->dead = $dead;
         }
 
         function save(){

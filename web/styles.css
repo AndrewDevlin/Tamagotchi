@@ -1,3 +1,67 @@
+body {
+  text-align: center;
+}
+
+.row {
+  margin: 0px;
+  width: 60%;
+}
+
+.dead {
+  color: red;
+  background-image: url(https://media.giphy.com/media/asq3L9TxBXHYQ/giphy.gif);
+  font-size: 30px;
+}
+
+.dead h1 {
+  color: red;
+  font-size: 100px;
+}
+
+ul {
+  padding: 0px;
+}
+
+li {
+  list-style: none;
+}
+
+.progress, .buttons {
+  margin: 0 auto;
+}
+
 .interaction {
-  float: left;
+  width: 70px;
+}
+
+.tamName {
+  font-size: 3em;
+}
+
+.foodBtn {
+  background-color: #49addc;
+  color: black;
+  font-weight: bolder;
+}
+
+.sleepBtn {
+  background-color: #ff9926;
+  color: black;
+  font-weight: bolder;
+}
+
+.playBtn {
+  background-color: #8bbe26;
+  color: black;
+  font-weight: bolder;
+}
+
+.delBtn {
+  background-color: #d32626;
+  color: black;
+  font-weight: bolder;
+}
+
+.deadBtn {
+  width: 100%;
 }

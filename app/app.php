@@ -30,7 +30,7 @@
     });
 
     $app->post("/new", function() use ($app) {
-        $tama = new Tama($_POST['name'], 30, 30, 30, false);
+        $tama = new Tama($_POST['name'], 100, 100, 100);
         $tama->save();
         return $app->redirect('/');
 
@@ -52,7 +52,7 @@
     });
 
     $app->post("/dead", function() use ($app) {
-
+      return $app['twig']->render("Dead.html.twig");
     });
 
     $app->post("/delete", function() use ($app) {
