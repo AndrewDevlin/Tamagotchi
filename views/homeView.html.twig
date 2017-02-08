@@ -18,28 +18,25 @@
         </form>
       {% elseif tama is not empty%}
         <ul>
-          {% for item in tama%}
-          <li class="tamName">{{item.getName}}</li>
+          <li class="tamName">{{tama[0].getName}}</li>
           <li>Food Level:
             <div class="progress progress-striped active" style="width: 30%">
-              <div class="progress-bar" style="width:{{(item.getFood/100)*100}}%"></div>
-              <div class="progress-bar progress-bar-danger" style="width:{{100-(item.getFood/100)*100}}%"></div>
+              <div class="progress-bar" style="width:{{(tama[0].getFood/100)*100}}%"></div>
+              <div class="progress-bar progress-bar-danger" style="width:{{100-(tama[0].getFood/100)*100}}%"></div>
             </div>
           </li>
           <li>Sleep Level:
             <div class="progress progress-striped active" style="width: 30%">
-              <div class="progress-bar  progress-bar-warning" style="width:{{(item.getSleep/100)*100}}%"></div>
-              <div class="progress-bar progress-bar-danger" style="width:{{100-(item.getSleep/100)*100}}%"></div>
+              <div class="progress-bar  progress-bar-warning" style="width:{{(tama[0].getSleep/100)*100}}%"></div>
+              <div class="progress-bar progress-bar-danger" style="width:{{100-(tama[0].getSleep/100)*100}}%"></div>
             </div>
           </li>
           <li>Play Level:
             <div class="progress progress-striped active" style="width: 30%">
-              <div class="progress-bar progress-bar-success" style="width:{{(item.getPlay/100)*100}}%"></div>
-              <div class="progress-bar progress-bar-danger" style="width:{{100-(item.getPlay/100)*100}}%"></div>
+              <div class="progress-bar progress-bar-success" style="width:{{(tama[0].getPlay/100)*100}}%"></div>
+              <div class="progress-bar progress-bar-danger" style="width:{{100-(tama[0].getPlay/100)*100}}%"></div>
             </div>
           </li>
-
-      {% endfor %}
         </ul>
         <div class="buttons row">
           <!-- <div class="col-xs-3">
@@ -67,8 +64,10 @@
 
 
         </div>
-        <br><br>
       {% endif %}
+    </div>
+    <div class="row imgDiv">
+      <img src={{health}}>
     </div>
 </body>
 </html>
